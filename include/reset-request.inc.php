@@ -22,10 +22,6 @@ if(isset($_POST["reset-request-submit"])){
    
    //send E-mail
    
-
-   
-
-
 $to_email = $userEmail;
 $subject = "Test email to send from XAMPP";
 $body = '<a href="' . $url . '">' . $url . '</a></p>';
@@ -37,18 +33,15 @@ if (mail($to_email, $subject, $body, $headers))
  
 {
     echo "Email successfully sent to $to_email...";
+	header('Location: ../pwdreset.php?reset=success');
 }
  
 else
  
 {
-    echo "Email sending failed!";
+	header('Location: ../pwdreset.php?reset=emailsentfailure');
 }
-   
-   // mail($to, $subject, $message, $headers);
-	
-	// header('Location: ../pwdreset.php?reset=success');
-	
+
 }else{
 	
 	header("Location: ../login-form-7.php");
