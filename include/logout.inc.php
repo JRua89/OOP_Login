@@ -12,6 +12,15 @@ if($_SESSION['user_type'] == 'Google'){
     session_unset();
     session_destroy();
 
+}elseif($_SESSION['user_type'] == 'facebook'){
+    
+    session_start();.
+    session_unset();
+    
+    $_SESSION['FBID'] = NULL;
+    $_SESSION['FULLNAME'] = NULL;
+    $_SESSION['EMAIL'] =  NULL; 
+
 }else{
 
     session_unset();

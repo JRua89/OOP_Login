@@ -1,6 +1,6 @@
 <?php
 session_start();
-//include "fb-login\FBLogin.php";
+include "fb-login\FBLogin.php";
 
 ///Google Login
 

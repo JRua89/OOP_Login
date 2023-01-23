@@ -50,7 +50,6 @@
 
 require 'vendor/autoload.php';
 
-session_start();
 
 $fb = new Facebook\Facebook([
 
@@ -111,7 +110,7 @@ $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
 
 if (isset($_GET['code'])) {
 
-header('Location: profile.php');
+header('Location: fb-login/profile.php');
 
 }
 
@@ -173,7 +172,7 @@ exit;
 
 // replace your website URL same as added in the developers.Facebook.com/apps e.g. if you used http instead of https and you used            
 
-$loginUrl = $helper->getLoginUrl('http://localhost/fb-login/FBLogin.php', $permissions);
+$loginUrl = $helper->getLoginUrl('http://localhost/oop_login/login-form-7.php', $permissions);
 
 
 }
