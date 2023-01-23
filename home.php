@@ -6,26 +6,33 @@ if( !isset($_SESSION["userid"]) ){
 	 exit();
 }
 
-switch ($_SESSION['user_type']){
-  case 'google':
-    $_SESSION['userid'];
-    $_SESSION['user_first_name'];
+
+
+if ($_SESSION['user_type'] == 'Google'){
+
+    $userid = $_SESSION['userid'];
+    $username = $_SESSION['user_first_name'];
     $_SESSION['user_last_name'];
     $_SESSION['user_email_address'];
-    $_SESSION['user_gender'];
     $_SESSION['user_image'];
-  break;
-  case 'facebook':
 
-  break;
-  case 'apple':
+  }elseif($_SESSION['user_type'] == 'facebook'){
 
-  break;
-  default:
-  $_SESSION["userid"];
-  $_SESSION["useruid"];
-  break;
-}
+    $userid = $_SESSION['userid'];
+    $username = $_SESSION['fb_name'];
+    $fbemail=$_SESSION['fb_email'];
+    $fbpic = $_SESSION['fb_pic'];
+
+  }elseif($_SESSION['user_type'] == 'apple'){
+
+  }else{
+    $_SESSION["userid"];
+    $username = $_SESSION["useruid"];
+  }
+
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -79,7 +86,9 @@ switch ($_SESSION['user_type']){
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>Hello <?PHP echo $_SESSION["useruid"] ? $_SESSION["useruid"]: $_SESSION['user_first_name']; ?></h1>      
+
+    <h1>Hello <?PHP echo $username; ?></h1>      
+
     <p>Some text that represents "Me"...</p>
   </div>
 </div>
