@@ -7,6 +7,9 @@ include "fb-login\FBLogin.php";
 //Include Configuration File
 include('GLogin\GLogin.php');
 
+//Include Configuration File
+include('Apple-login\appleLogin.php');
+
 $login_button = '';
 
 
@@ -21,10 +24,7 @@ if(isset($_GET["code"]))
  
    $google_client->setAccessToken($token['access_token']);
 
- 
    $_SESSION['access_token'] = $token['access_token'];
-
-
 
 
    $google_service = new Google_Service_Oauth2($google_client);
