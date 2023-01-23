@@ -7,6 +7,7 @@ if( !isset($_SESSION["userid"]) ){
 }
 
 
+
 if ($_SESSION['user_type'] == 'Google'){
 
     $userid = $_SESSION['userid'];
@@ -28,6 +29,8 @@ if ($_SESSION['user_type'] == 'Google'){
     $_SESSION["userid"];
     $username = $_SESSION["useruid"];
   }
+
+
 
 
 
@@ -83,7 +86,9 @@ if ($_SESSION['user_type'] == 'Google'){
 
 <div class="jumbotron">
   <div class="container text-center">
+
     <h1>Hello <?PHP echo $username; ?></h1>      
+
     <p>Some text that represents "Me"...</p>
   </div>
 </div>

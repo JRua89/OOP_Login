@@ -43,6 +43,27 @@ if (isset($_GET['code'], $_GET['helloG'])) {
    $_SESSION['user_last_name'] = $google_account_info['family_name'];
   }
 
+
+   $email =  $google_account_info->email;
+   $name =  $google_account_info->name;
+
+  
+  if(!empty($google_account_info['given_name']))
+  {
+    $_SESSION['user_first_name'] = $google_account_info['given_name'];
+  }
+
+  if(!empty($google_account_info['id']))
+  {
+     $_SESSION['userid'] = $google_account_info['id'];
+  }
+
+  if(!empty($google_account_info['family_name']))
+  {
+   $_SESSION['user_last_name'] = $google_account_info['family_name'];
+  }
+
+
   if(!empty($google_account_info['email']))
   {
    $_SESSION['user_email_address'] = $google_account_info['email'];
