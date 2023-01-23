@@ -1,19 +1,13 @@
 <?php
 session_start();
 
+//Include Configuration File\
 
-///Google Login
-
-
-//Include Configuration File
-
-
+//Google Login
 include('GLogin\GLogin.php');
+
+//Facebook Login
 include ("fb-login\FBLogin.php");
-
-//Include Configuration File
-//include('Apple-login\appleLogin.php');
-
 
 if( !isset($_GET["error"]) ){
 	$case="none";
@@ -135,7 +129,7 @@ switch ($_GET["error"]) {
               <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
 			  </a>
 			<p></p>
-              <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #2d2d2d;" type="submit"><i class="fab fa-apple me-2"></i>Sign in with Apple</button>
+              <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #00acee;" type="submit"><i class="fab fa-twitter me-2"></i>Sign in with Twitter</button>
             </div>
           </div>
         </div>
