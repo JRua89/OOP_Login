@@ -24,10 +24,8 @@ if (isset($_GET['code'])) {
   $google_oauth = new Google_Service_Oauth2($client);
   $google_account_info = $google_oauth->userinfo->get();
 
-  print_r($google_account_info);
-
-   $email =  $google_account_info->email;
-   $name =  $google_account_info->name;
+   //$email =  $google_account_info->email;
+   //$name =  $google_account_info->name;
 
   
   if(!empty($google_account_info['given_name']))
