@@ -5,7 +5,7 @@ require_once 'vendor/autoload.php';
 // init configuration 
 $clientID = '238815036256-p47lj4a51f6mn6af9u42rfp5dnvbd6ua.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'http://localhost/oop_login/login-form-7.php';
+$redirectUri = 'http://localhost/oop_login/login-form-7.php?helloG=true';
   
 // create Client Request to access Google API 
 $client = new Google_Client();
@@ -16,7 +16,7 @@ $client->addScope("email");
 $client->addScope("profile");
  
 // authenticate code from Google OAuth Flow 
-if (isset($_GET['code'])) {
+if (isset($_GET['code'], $_GET['helloG'])) {
   $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
   $client->setAccessToken($token['access_token']);
   
@@ -66,6 +66,7 @@ if (isset($_GET['code'])) {
 } else {
   //echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
   $google_Url=$client->createAuthUrl();
+
 }
 
 ?> 

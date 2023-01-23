@@ -14,9 +14,13 @@ if ($_SESSION['user_type'] == 'Google'){
     $_SESSION['user_last_name'];
     $_SESSION['user_email_address'];
     $_SESSION['user_image'];
-    
+
   }elseif($_SESSION['user_type'] == 'facebook'){
 
+    $userid = $_SESSION['userid'];
+    $username = $_SESSION['fb_name'];
+    $fbemail=$_SESSION['fb_email'];
+    $fbpic = $_SESSION['fb_pic'];
 
   }elseif($_SESSION['user_type'] == 'apple'){
 

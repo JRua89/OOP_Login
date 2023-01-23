@@ -14,7 +14,6 @@ if($_SESSION['user_type'] == 'Google'){
 
 }elseif($_SESSION['user_type'] == 'facebook'){
     
-    session_start();.
     session_unset();
     
     $_SESSION['FBID'] = NULL;
