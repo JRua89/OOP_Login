@@ -1,9 +1,30 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["userid"]) ){
+if( !isset($_SESSION["userid"]) ){
  header("Location: include/logout.inc.php");
 	 exit();
+}
+
+switch ($_SESSION['user_type']){
+  case 'google':
+    $_SESSION['userid'];
+    $_SESSION['user_first_name'];
+    $_SESSION['user_last_name'];
+    $_SESSION['user_email_address'];
+    $_SESSION['user_gender'];
+    $_SESSION['user_image'];
+  break;
+  case 'facebook':
+
+  break;
+  case 'apple':
+
+  break;
+  default:
+  $_SESSION["userid"];
+  $_SESSION["useruid"];
+  break;
 }
 
 ?>
@@ -58,7 +79,7 @@ if(!isset($_SESSION["userid"]) ){
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>Hello <?PHP echo $_SESSION["useruid"]; ?></h1>      
+    <h1>Hello <?PHP echo $_SESSION["useruid"] ? $_SESSION["useruid"]: $_SESSION['user_first_name']; ?></h1>      
     <p>Some text that represents "Me"...</p>
   </div>
 </div>

@@ -1,29 +1,5 @@
 <?php
 
-//config.php
-
-// //Include Google Client Library for PHP autoload file
-// require_once 'vendor/autoload.php';
-
-// //Make object of Google API Client for call Google API
-// $google_client = new Google_Client();
-
-// //Set the OAuth 2.0 Client ID
-// $google_client->setClientId('238815036256-p47lj4a51f6mn6af9u42rfp5dnvbd6ua.apps.googleusercontent.com');
-
-// //Set the OAuth 2.0 Client Secret key
-// $google_client->setClientSecret('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');
-
-// //Set the OAuth 2.0 Redirect URI
-// $google_client->setRedirectUri('http://localhost/oop_login/');
-
-// // to get the email and profile 
-// $google_client->addScope('email');
-
-// $google_client->addScope('profile');
-
-
-
 require_once 'vendor/autoload.php';
  
 // init configuration 
@@ -50,12 +26,47 @@ if (isset($_GET['code'])) {
 
   print_r($google_account_info);
 
-  echo $email =  $google_account_info->email;
-  echo $name =  $google_account_info->name;
+   $email =  $google_account_info->email;
+   $name =  $google_account_info->name;
+
+  
+  if(!empty($google_account_info['given_name']))
+  {
+    $_SESSION['user_first_name'] = $google_account_info['given_name'];
+  }
+
+  if(!empty($google_account_info['id']))
+  {
+     $_SESSION['userid'] = $google_account_info['id'];
+  }
+
+  if(!empty($google_account_info['family_name']))
+  {
+   $_SESSION['user_last_name'] = $google_account_info['family_name'];
+  }
+
+  if(!empty($google_account_info['email']))
+  {
+   $_SESSION['user_email_address'] = $google_account_info['email'];
+  }
+
+  if(!empty($google_account_info['gender']))
+  {
+   $_SESSION['user_gender'] = $google_account_info['gender'];
+  }
+
+  if(!empty($google_account_info['picture']))
+  {
+    $_SESSION['user_image'] = $google_account_info['picture'];
+  }
+
+  $_SESSION['user_type'] = "Google";
  
+  header('Location: home.php');
+  exit();
   // now you can use this profile info to create account in your website and make user logged in. 
 } else {
-  echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
+  //echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
   $google_Url=$client->createAuthUrl();
 }
 

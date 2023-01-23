@@ -50,7 +50,7 @@
 
 require 'vendor/autoload.php';
 
-session_start();
+
 
 $fb = new Facebook\Facebook([
 
