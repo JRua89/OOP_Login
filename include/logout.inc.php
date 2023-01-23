@@ -12,13 +12,20 @@ if($_SESSION['user_type'] == 'Google'){
     session_unset();
     session_destroy();
 
+    session_unset($_SESSION["userid"]);
+
 }elseif($_SESSION['user_type'] == 'facebook'){
     
     session_unset();
     
-    $_SESSION['FBID'] = NULL;
-    $_SESSION['FULLNAME'] = NULL;
-    $_SESSION['EMAIL'] =  NULL; 
+    $_SESSION['userid'] = NULL;
+    $_SESSION['fb_name'] = NULL;
+    $_SESSION['fb_email'] =  NULL; 
+    $_SESSION['fb_pic'] =  NULL;
+    
+    session_unset($_SESSION["userid"]);
+
+}elseif($_SESSION['user_type'] == 'twitter'){
 
 }else{
 

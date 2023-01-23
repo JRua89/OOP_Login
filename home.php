@@ -6,8 +6,6 @@ if( !isset($_SESSION["userid"]) ){
 	 exit();
 }
 
-
-
 if ($_SESSION['user_type'] == 'Google'){
 
     $userid = $_SESSION['userid'];
@@ -23,7 +21,7 @@ if ($_SESSION['user_type'] == 'Google'){
     $fbemail=$_SESSION['fb_email'];
     $fbpic = $_SESSION['fb_pic'];
 
-  }elseif($_SESSION['user_type'] == 'apple'){
+  }elseif($_SESSION['user_type'] == 'twitter'){
 
   }else{
     $_SESSION["userid"];

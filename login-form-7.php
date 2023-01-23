@@ -9,6 +9,9 @@ include('GLogin\GLogin.php');
 //Facebook Login
 include ("fb-login\FBLogin.php");
 
+//Twitter Login
+include ("twitter-login\TLogin.php");
+
 if( !isset($_GET["error"]) ){
 	$case="none";
 	
