@@ -1,5 +1,6 @@
 <?php
-include "fb-login\FBLogin.php";
+session_start();
+//include "fb-login\FBLogin.php";
 
 ///Google Login
 
@@ -8,68 +9,68 @@ include "fb-login\FBLogin.php";
 include('GLogin\GLogin.php');
 
 //Include Configuration File
-include('Apple-login\appleLogin.php');
+//include('Apple-login\appleLogin.php');
 
-$login_button = '';
-
-
-if(isset($_GET["code"]))
-{
-
-  $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+// $login_button = '';
 
 
- if(!isset($token['error']))
- {
+// if(isset($_GET["code"]))
+// {
+
+//   $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+
+
+//  if(!isset($token['error']))
+//  {
  
-   $google_client->setAccessToken($token['access_token']);
+//    $google_client->setAccessToken($token['access_token']);
 
-   $_SESSION['access_token'] = $token['access_token'];
+//    $_SESSION['access_token'] = $token['access_token'];
 
 
-   $google_service = new Google_Service_Oauth2($google_client);
-
- 
-  $data = $google_service->userinfo->get();
- echo  "<pre>";
-print_r($data);
+//    $google_service = new Google_Service_Oauth2($google_client);
 
  
-  if(!empty($data['given_name']))
-  {
-   $_SESSION['user_first_name'] = $data['given_name'];
-  }
+//   $data = $google_service->userinfo->get();
+//  echo  "<pre>";
+// print_r($data);
 
-  if(!empty($data['family_name']))
-  {
-   $_SESSION['user_last_name'] = $data['family_name'];
-  }
+ 
+//   if(!empty($data['given_name']))
+//   {
+//    $_SESSION['user_first_name'] = $data['given_name'];
+//   }
 
-  if(!empty($data['email']))
-  {
-   $_SESSION['user_email_address'] = $data['email'];
-  }
+//   if(!empty($data['family_name']))
+//   {
+//    $_SESSION['user_last_name'] = $data['family_name'];
+//   }
 
-  if(!empty($data['gender']))
-  {
-   $_SESSION['user_gender'] = $data['gender'];
-  }
+//   if(!empty($data['email']))
+//   {
+//    $_SESSION['user_email_address'] = $data['email'];
+//   }
 
-  if(!empty($data['picture']))
-  {
-   echo $_SESSION['user_image'] = $data['picture'];
-  }
- }
-}else{
-  echo "fail";
-}
+//   if(!empty($data['gender']))
+//   {
+//    $_SESSION['user_gender'] = $data['gender'];
+//   }
+
+//   if(!empty($data['picture']))
+//   {
+//    echo $_SESSION['user_image'] = $data['picture'];
+//   }
+//  }
+// }else{
+//   echo "fail";
+// }
 
 
-if(!isset($_SESSION['access_token']))
-{
+// if(!isset($_SESSION['access_token']))
+// {
 
-  $login_button = '<a href="'.$google_client->createAuthUrl().'">Login With Google</a>';
-}
+//   //$login_button = '<a href="'.$google_client->createAuthUrl().'">Login With Google</a>';
+// }
 
 
 if( !isset($_GET["error"]) ){
@@ -184,7 +185,7 @@ switch ($_GET["error"]) {
 			  
 			</form>
               <hr class="my-4">
-				<a href="<?PHP echo $login_button; ?>" class="inline">
+				<a href="<?PHP echo $google_Url; ?>" class="inline">
               <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
         </a>
 			  <p></p>
