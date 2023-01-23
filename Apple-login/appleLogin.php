@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Read this blog post for a full walkthrough of this code
 // https://developer.okta.com/blog/2019/06/04/what-the-heck-is-sign-in-with-apple
