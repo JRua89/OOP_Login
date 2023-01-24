@@ -26,7 +26,13 @@ if($_SESSION['user_type'] == 'Google'){
     session_unset($_SESSION["userid"]);
 
 }elseif($_SESSION['user_type'] == 'twitter'){
-
+    session_unset();
+    
+    $_SESSION['userid'] = NULL;
+    $_SESSION['name'] = NULL;
+    $_SESSION['screen_name'] =  NULL; 
+    
+    session_unset($_SESSION["userid"]);
 }else{
 
     session_unset();

@@ -23,6 +23,10 @@ if ($_SESSION['user_type'] == 'Google'){
 
   }elseif($_SESSION['user_type'] == 'twitter'){
 
+    $username = $_SESSION['name'] ;
+    $userid = $_SESSION['userid'];
+    $screen_name= $_SESSION['screen_name'];
+    
   }else{
     $_SESSION["userid"];
     $username = $_SESSION["useruid"];

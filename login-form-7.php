@@ -132,7 +132,9 @@ switch ($_GET["error"]) {
               <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
 			  </a>
 			<p></p>
+      <a href="<?PHP echo $twitter_Login; ?>" class="inline">
               <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #00acee;" type="submit"><i class="fab fa-twitter me-2"></i>Sign in with Twitter</button>
+      </a>       
             </div>
           </div>
         </div>
