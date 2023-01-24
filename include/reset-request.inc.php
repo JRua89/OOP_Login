@@ -20,27 +20,38 @@ if(isset($_POST["reset-request-submit"])){
    $userDelete=$pwdReset->userDelete( $userEmail );
    $userInsert=$pwdReset->userInsert( $userEmail, $selector, $hashedToken, $expires );
    
-   //send E-mail
-   
-$to_email = $userEmail;
-$subject = "Test email to send from XAMPP";
-$body = '<a href="' . $url . '">' . $url . '</a></p>';
-$headers = "From: Jrua <Jrua@test.com>\r\n";
-$headers .= "Reply-To: JRua89@gmail.com\r\n";
-$headers .= "Content-type: text/html\r\n";
- 
-if (mail($to_email, $subject, $body, $headers))
- 
-{
-    echo "Email successfully sent to $to_email...";
-	header('Location: ../pwdreset.php?reset=success');
+   $to = 'JRua89@gmail.com';
+$subject = 'Hello from XAMPP!';
+$message = 'This is a test';
+$headers = "From: securerua@gmail.com\r\n";
+if (mail($to, $subject, $message, $headers)) {
+   echo "SUCCESS";
+} else {
+   echo "ERROR";
 }
- 
-else
- 
-{
-	header('Location: ../pwdreset.php?reset=emailsentfailure');
-}
+/////////////////////////////////////////////
+
+// require '../phpmailer/phpmailer/src/PHPMailer.php';
+// $mail = new PHPMailer;
+// $mail->isSMTP();
+// $mail->SMTPSecure = 'ssl';
+// $mail->SMTPAuth = true;
+// $mail->Host = 'smtp.gmail.com';
+// $mail->Port = 465;
+// $mail->Username = 'your-gmail-username@gmail.com';
+// $mail->Password = 'your-gmail-password';
+// $mail->setFrom('your@email-address.com');
+// $mail->addAddress('recipients@email-address.com');
+// $mail->Subject = 'Hello from PHPMailer!';
+// $mail->Body = 'This is a test.';
+// //send the message, check for errors
+// if (!$mail->send()) {
+//     echo "ERROR: " . $mail->ErrorInfo;
+// } else {
+//     echo "SUCCESS";
+// }
+
+
 
 }else{
 	
