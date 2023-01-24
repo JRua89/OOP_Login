@@ -90,13 +90,13 @@ $fbpic = "<img src='".$picture['url']."' class='img-rounded'/>";
 
 # save the user nformation in session variable
 
-$_SESSION['userid'] = $fbid.'</br>';
+$_SESSION['userid'] = $fbid;
 
-$_SESSION['fb_name'] = $fbfullname.'</br>';
+$_SESSION['fb_name'] = $fbfullname;
 
-$_SESSION['fb_email'] = $fbemail.'</br>';
+$_SESSION['fb_email'] = $fbemail;
 
-$_SESSION['fb_pic'] = $fbpic.'</br>';
+$_SESSION['fb_pic'] = $fbpic;
 
 $_SESSION['user_type'] = 'facebook';
 
