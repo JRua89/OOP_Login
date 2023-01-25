@@ -1,5 +1,7 @@
 
-Responsive Login form built with Bootstrap 5 using ![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/basic.png). Using PHP OOP to login and login with Google Authenticator, Facebook Login, and Twitter Login.
+Responsive Login form built with Bootstrap 5 using. Develop using OOP PHP to login and login with Google Authenticator, Facebook Login, and Twitter Login.
+
+![Bootstrap 5 Login Form](https://i.ibb.co/ypJ8cjB/Capture.png)
 
 ## Example
 
@@ -189,7 +191,6 @@ switch ($_GET["error"]) {
 			   
 				 </div>
 			
-				
        
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
