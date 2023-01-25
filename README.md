@@ -1,102 +1,212 @@
 
-Responsive Login form built with Bootstrap 5. Lot of templates of signup forms and predefined form pages. Various design, styles and functionalities.
+Responsive Login form built with Bootstrap 5 using ![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/basic.png). Using PHP OOP to login and login with Google Authenticator, Facebook Login, and Twitter Login.
 
-Check out [Bootstrap Login Form Documentation](https://mdbootstrap.com/docs/standard/extended/login/) for detailed instructions & even more examples.
-
-## Basic example
-
-![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/basic.png)
+## Example
 
 ```html
-<section class="vh-100">
-  <div class="container-fluid h-custom">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
-          alt="Sample image">
-      </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form>
-          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
-            </button>
+<?php
+session_start();
 
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-twitter"></i>
-            </button>
+//Include Configuration File\
 
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-linkedin-in"></i>
-            </button>
-          </div>
+//Google Login
+include('GLogin\GLogin.php');
 
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0">Or</p>
-          </div>
+//Facebook Login
+include ("fb-login\FBLogin.php");
 
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" />
-            <label class="form-label" for="form3Example3">Email address</label>
-          </div>
+//Twitter Login
+include ("twitter-login\TLogin.php");
 
-          <!-- Password input -->
-          <div class="form-outline mb-3">
-            <input type="password" id="form3Example4" class="form-control form-control-lg"
-              placeholder="Enter password" />
-            <label class="form-label" for="form3Example4">Password</label>
-          </div>
+if( !isset($_GET["error"]) ){
+	$case="none";
+	
+}else{
 
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
+switch ($_GET["error"]) {
+  case "stmtfailedinsert":
+   $case= "System error!";
+    break;
+  case "stmtfailed":
+     $case= "User does not exist!";
+    break;
+  case "emptyinput":
+     $case="No input!";
+    break;
+  case "wrongpassword":
+    $case="Wrong Password!";
+    break;
+	case "usernotfound":
+    $case="User not found!";
+    break;
+	case "passwordmatch":
+    $case="Password do not match!";
+    break;
+	case "username":
+    $case="Invalid Username!";
+    break;
+	case "useroremailtaken":
+    $case="Username and email are taken!";
+    break;
+	case "email":
+    $case="Invalid email address!";
+    break;
+  default:
+    $case="none";
+	
+}
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="css/bootstrap-login-form.min.css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+
+		<?PHP if( $case=='none' ){ }else{ ?>
+		
+	<div class="alert alert-danger alert-dismissible">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong><?PHP echo $case; ?></strong>
+	</div>
+	<?php
+		}
+	?>
+              <h3 class="mb-5">Sign in</h3>
+			<form action="include/login.inc.php" method="POST">
+              <div class="form-outline mb-4">
+                <input type="text" id="typeEmailX-2" name='uid' class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX-2">Username</label>
+              </div>
+  
+              <div class="form-outline mb-4">
+                <input type="password" id="typePasswordX-2" name='pwd' class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX-2">Password</label>
+				
+              </div>
+			  
+			  <label class="w-100 text-right">
+			<a href="pwdreset.php">Forgot Password ?</a>
+			</label>
+    <p></p>
+              <!-- Checkbox -->
+			  
+              
+               
+  
+              <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Login</button>
+			   <p></p>
+			   <label class="w-50"> Don't have an account yet? <a href='#' data-toggle="modal" data-target="#myModal">Sign up here!</a> </label>
+              <p></p>
+			  
+			</form>
+              <hr class="my-4">
+				<a href="<?PHP echo $google_Url; ?>" class="inline">
+              <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
+        </a>
+			  <p></p>
+			  <a href="<?PHP echo $loginUrl ; ?>" class="inline">
+              <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
+			  </a>
+			<p></p>
+      <a href="<?PHP echo $twitter_Login; ?>" class="inline">
+              <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #00acee;" type="submit"><i class="fab fa-twitter me-2"></i>Sign in with Twitter</button>
+      </a>       
             </div>
-            <a href="#!" class="text-body">Forgot password?</a>
           </div>
-
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                class="link-danger">Register</a></p>
-          </div>
-
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-    <!-- Copyright -->
-    <div class="text-white mb-3 mb-md-0">
-      Copyright © 2020. All rights reserved.
-    </div>
-    <!-- Copyright -->
+  </section>
+  <!-- End your project here-->
+<!--MODAL register-->
 
-    <!-- Right -->
-    <div>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="#!" class="text-white">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h3 class="modal-title">Register</h3>
+        </div>
+        <div class="modal-body">
+
+		<form action='include/signup.inc.php' method='POST' >
+              <div class="form-outline mb-4">
+                <input type="text" id="typeEmailX-2" name="uid" class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX-2">Username</label>
+              </div>
+  
+              <div class="form-outline mb-4">
+                <input type="password" id="typePasswordX-2" name="pwd" class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX-2">Password</label>
+              </div>
+			  
+			  <div class="form-outline mb-4">
+                <input type="password" id="typePasswordX-2" name="pwdrepeat" class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX-2">Retype Password</label>
+              </div>
+			  
+			   
+			   <div class="form-outline mb-4">
+                <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX-2">Email</label>
+              </div>
+			  
+			    <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Sign up</button>
+				  </form>
+			   
+				 </div>
+			
+				
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
     </div>
-    <!-- Right -->
   </div>
-</section>
+  
+</div>
+  <!-- MDB -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+</body>
+
+</html>
 ```
 
 CSS
@@ -119,85 +229,4 @@ CSS
 }
 ```
 
-
-## How to use?
-
-1. Download MDB 5 - free UI KIT
-
-2. Choose your favourite customized component and click on the image
-
-3. Copy & paste the code into your MDB project
-
-[▶️ Subscribe to YouTube channel for web development tutorials & resources](https://www.youtube.com/MDBootstrap?sub_confirmation=1)
-
-## More examples
-
-[Bootstrap Login Form #2:
-![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/login-form-2.png)](https://mdbootstrap.com/docs/standard/extended/login/#section-2)
-
-[Bootstrap Login Form #3:
-![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/login-form-3.png)](https://mdbootstrap.com/docs/standard/extended/login/#section-3)
-
-[Bootstrap Login Form #4:
-![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/login-form-4.png)](https://mdbootstrap.com/docs/standard/extended/login/#section-4)
-
-[Bootstrap Login Form #5:
-![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/login-form-5.png)](https://mdbootstrap.com/docs/standard/extended/login/#section-5)
-
-[Bootstrap Login Form #6:
-![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/login-form-6.png)](https://mdbootstrap.com/docs/standard/extended/login/#section-6)
-
-[Bootstrap Login Form #7:
-![Bootstrap 5 Login Form](https://mdbootstrap.com/img/Marketing/github/login/login-form-7.png)](https://mdbootstrap.com/docs/standard/extended/login/#section-7)
-
-___
-
-## More extended Bootstrap documentation
-
-<ul>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-address-form/">Bootstrap Address Form</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/avatar/">Bootstrap Avatar</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/back-to-top/">Bootstrap Back To Top Button</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/carousel-with-thumbnails/">Bootstrap Carousel Slider with Thumbnails</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/chat/">Bootstrap Chat</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/code/">Bootstrap Code Blocks</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/comments/">Bootstrap Comments</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-comparison-table/">Bootstrap Comparison Table</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/credit-card/">Bootstrap Credit Card Form</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/drawer/">Bootstrap Drawer</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/">Bootstrap Nested Dropdown</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/faq/">Bootstrap FAQ component / section</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/gallery/">Bootstrap Gallery</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/hamburger-menu/">Bootstrap Hamburger Menu</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-invoice/">Bootstrap Invoice</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/jumbotron/">Bootstrap Jumbotron</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/login/">Bootstrap Login Form</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/maps/">Bootstrap Maps</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/media-object/">Bootstrap Media Object</a></li>
-<li><a href="https://mdbootstrap.com/docs/standard/extended/mega-menu/">Bootstrap Mega Menu</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/multiselect/">Bootstrap Multiselect</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/news-feed/">Bootstrap News Feed</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/offcanvas/">Bootstrap Offcanvas</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/order-details/">Bootstrap Order Details</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/page-transitions/">Bootstrap Page Transitions</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/payment-forms/">Bootstrap Payment Forms</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/product-cards/">Bootstrap Product Cards</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/profiles/">Bootstrap Profiles</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/quotes/">Bootstrap Quotes</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/registration/">Bootstrap Registration Form</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/search-expanding/">Bootstrap Expanding Search Bar</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/shopping-carts/">Bootstrap Shopping Carts</a></li> 
-<li><a href="https://mdbootstrap.com/docs/standard/extended/side-navbar/">Bootstrap Side Navbar</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/sidebar/">Bootstrap Sidebar</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/social-media/">Bootstrap Social Media Icons & Buttons</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/square-buttons/">Bootstrap Square Buttons</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-survey-form/">Bootstrap Survey Form</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/testimonial-slider/">Bootstrap Testimonial Slider</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/testimonials/">Bootstrap Testimonials</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/textarea/">Bootstrap Textarea</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/timeline/">Bootstrap Timeline</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/to-do-list/">Bootstrap To Do List</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/video-carousel/">Bootstrap Video Carousel / Gallery</a></li>  
-<li><a href="https://mdbootstrap.com/docs/standard/extended/weather/">Bootstrap Weather</a></li>  
-</ul>
 
