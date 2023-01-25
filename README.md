@@ -104,7 +104,7 @@ switch ($_GET["error"]) {
 		}
 	?>
               <h3 class="mb-5">Sign in</h3>
-			<form action="include/login.inc.php" method="POST">
+			        <form action="include/login.inc.php" method="POST">
               <div class="form-outline mb-4">
                 <input type="text" id="typeEmailX-2" name='uid' class="form-control form-control-lg" />
                 <label class="form-label" for="typeEmailX-2">Username</label>
@@ -113,24 +113,18 @@ switch ($_GET["error"]) {
               <div class="form-outline mb-4">
                 <input type="password" id="typePasswordX-2" name='pwd' class="form-control form-control-lg" />
                 <label class="form-label" for="typePasswordX-2">Password</label>
-				
               </div>
-			  
 			  <label class="w-100 text-right">
 			<a href="pwdreset.php">Forgot Password ?</a>
 			</label>
     <p></p>
-              <!-- Checkbox -->
-			  
-              
-               
-  
+   
               <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Login</button>
 			   <p></p>
 			   <label class="w-50"> Don't have an account yet? <a href='#' data-toggle="modal" data-target="#myModal">Sign up here!</a> </label>
               <p></p>
 			  
-			</form>
+			        </form>
               <hr class="my-4">
 				<a href="<?PHP echo $google_Url; ?>" class="inline">
               <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
@@ -159,11 +153,9 @@ switch ($_GET["error"]) {
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          
           <h3 class="modal-title">Register</h3>
         </div>
         <div class="modal-body">
-
 		<form action='include/signup.inc.php' method='POST' >
               <div class="form-outline mb-4">
                 <input type="text" id="typeEmailX-2" name="uid" class="form-control form-control-lg" />
@@ -188,10 +180,8 @@ switch ($_GET["error"]) {
 			  
 			    <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Sign up</button>
 				  </form>
-			   
 				 </div>
 			
-       
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
