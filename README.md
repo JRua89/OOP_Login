@@ -1,5 +1,5 @@
 
-Responsive Login form built with Bootstrap 5 using. Develop using OOP PHP to login and login with Google Authenticator, Facebook Login, and Twitter Login.
+Responsive Login form built with Bootstrap 5. Develop using OOP PHP to login and login with Google Authenticator, Facebook Login, and Twitter Login.
 
 ![Bootstrap 5 Login Form](https://i.ibb.co/5kV5gHx/Capture.png)
 
